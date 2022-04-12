@@ -5,16 +5,16 @@ import java.time.LocalTime;
 
 public class Boss {
 
-    private final String name;
-    private final Duration timer;
-    private final String place;
+    private String name;
+    private Duration timer;
+    private String place;
     private LocalTime respawn;
 
     public Boss(String name, Duration timer, String place) {
         this.name = name;
         this.timer = timer;
         this.place = place;
-        this.respawn = null;
+        this.respawn = LocalTime.now().plus(Duration.ofMinutes(timer.toMinutes()));
     }
 
     public String getName() {
@@ -33,12 +33,24 @@ public class Boss {
         return respawn;
     }
 
-    public void setRespawn(LocalTime respawn) {
-        this.respawn = respawn;
-    }
-
     public void markKill(){
         this.respawn = respawn.plus(timer);
+    }
+
+    public void markKill(LocalTime time){
+        this.respawn = time.plus(timer);
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setTimer(Duration timer) {
+        this.timer = timer;
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
     }
 
     @Override
