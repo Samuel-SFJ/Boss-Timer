@@ -6,7 +6,6 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 
@@ -56,15 +55,8 @@ public class HelloController {
                 if (newBoss != null) {
                     DateTimeFormatter df = DateTimeFormatter.ofPattern("H:mm");
                     String spawn = listOfBosses.getSelectionModel().getSelectedItem().getRespawn().format(df);
-
-                    System.out.println(spawn);
-
                     spawnTime.setText(spawn);
                     place.setText(" " + " at " + newBoss.getPlace());
-
-//                    bossTextArea.setText(spawn);
-
-
                 }
             }
         });
@@ -88,20 +80,20 @@ public class HelloController {
         long timerValue = Long.parseLong(bTimer.getText());
         Boss boss = new Boss(bName.getText(),Duration.ofMinutes(timerValue),bSpawn.getText());
         BossData.getInstance().addNewBoss(boss);
-//        bName.setText("Name");
-//        bSpawn.setText("Place");
-//        bTimer.setText("Timer");
     }
 
     @FXML
     public void openEdit(){
-        Boss boss = listOfBosses.getSelectionModel().getSelectedItem();
+        Boss b = listOfBosses.getSelectionModel().getSelectedItem();
 
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.initOwner(mainWindow.getScene().getWindow());
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("DialogController.fxml"));
+
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("DialogController.fxml"));
-            dialog.getDialogPane().setContent(root);
+            dialog.getDialogPane().setContent(fxmlLoader.load());
         } catch (IOException e) {
             System.out.println("Couldn't load the file");
             e.printStackTrace();
@@ -112,22 +104,11 @@ public class HelloController {
 
         Optional<ButtonType> result = dialog.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK){
-            bossEdit(boss);
+            DialogController controller = fxmlLoader.getController();
+            controller.bossEdit(b);
+//            listOfBosses.getSelectionModel().select(b);
         } else if (result.isPresent() && result.get() == ButtonType.CANCEL){
             System.out.println("Cancel pressed");
         }
-    }
-
-    @FXML
-    public void bossEdit(Boss b){
-        b.setName(bossNameEdit.getText());//bossNameEdit;
-        b.setPlace(bossPlaceEdit.getText());//bossPlaceEdit;
-
-        int minutes = Integer.parseInt(bossTimerEdit.getText());
-        Duration m = Duration.ofMinutes(minutes);
-        b.setTimer(m);
-
-//        bossTimerEdit;
-
     }
 }

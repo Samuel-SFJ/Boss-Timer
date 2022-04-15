@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<DialogPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.demo.DialogController"
+            prefHeight="200" prefWidth="300">
+
+    <header>
+
+    </header>
+
+    <graphic>
+
+    </graphic>
+
+    <content>
+        <GridPane vgap="5" hgap="5">
+            <Label text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <TextField fx:id="bossNameEdit" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+            <Label text="Place:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <TextField fx:id="bossPlaceEdit" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            <Label text="Timer:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <TextField fx:id="bossTimerEdit" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            <Label text="Respawn:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+            <TextField fx:id="bossRespawnEdit" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+        </GridPane>
+
+    </content>
+
+
+</DialogPane>

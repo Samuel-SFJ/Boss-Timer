@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.HBox?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.demo.HelloController"
+            fx:id="mainWindow">
+
+    <top>
+
+        <GridPane hgap="5" vgap="5">
+            <HBox GridPane.rowIndex="0" GridPane.columnIndex="0">
+                <MenuBar>
+                    <Menu text="File">
+                    <MenuItem text="Edit" onAction="#openEdit"/>
+                    <SeparatorMenuItem/>
+                    </Menu>
+                </MenuBar>
+            </HBox>
+
+            <HBox spacing="5" GridPane.rowIndex="1" GridPane.columnIndex="0">
+                <Button onAction="#addNew" text="New Boss"/>
+                <Button onAction="#beginTimer" text="Start Timer"/>
+
+                <TextField fx:id="bName" text="Name" prefWidth="50"/>
+                <TextField fx:id="bTimer" text="Timer" prefWidth="50"/>
+                <TextField fx:id="bSpawn" text="Place" prefWidth="100"/>
+            </HBox>
+        </GridPane>
+<!--            <HBox alignment="BOTTOM_LEFT">-->
+<!--                <padding>-->
+<!--                    <Insets bottom="10" right="10" left="10" top="10"/>-->
+<!--                </padding>-->
+
+<!--                <Button onAction="#getDetails" text="Details" GridPane.columnIndex="0" GridPane.rowIndex="0"/>-->
+<!--                <Button onAction="#addNew" text="New Boss" GridPane.columnIndex="2" GridPane.rowIndex="0" prefWidth="100"/>-->
+<!--                <Button onAction="#beginTimer" text="Start Timer" GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="100"/>-->
+
+<!--                <TextField fx:id="bName" text="Name" GridPane.rowIndex="0" GridPane.columnIndex="3" prefWidth="50"/>-->
+<!--                <TextField fx:id="bTimer" text="Timer" GridPane.rowIndex="0" GridPane.columnIndex="4" prefWidth="50"/>-->
+<!--                <TextField fx:id="bSpawn" text="Place" GridPane.rowIndex="0" GridPane.columnIndex="5" prefWidth="100"/>-->
+<!--            </HBox>-->
+    </top>
+
+
+    <left>
+        <GridPane>
+            <ListView fx:id="listOfBosses">
+
+            </ListView>
+
+        </GridPane>
+    </left>
+
+    <center>
+        <VBox>
+<!--            <TextArea fx:id="bossTextArea"/>-->
+            <HBox>
+                <Label text="Spawns: "/>
+                <Label fx:id="spawnTime" text="test spawn label"/>
+                <Label fx:id="place" text="test place label"/>
+            </HBox>
+        </VBox>
+
+
+    </center>
+
+
+
+
+</BorderPane>
